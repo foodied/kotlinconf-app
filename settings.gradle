@@ -6,5 +6,5 @@ include 'backend'
 include 'common'
 
 if (INCLUDE_ANDROID == "true") {
-    include 'android', 'android:app'
+    include 'androidApp'
 }

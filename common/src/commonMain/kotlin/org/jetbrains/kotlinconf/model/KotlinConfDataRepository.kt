@@ -75,10 +75,9 @@ class KotlinConfDataRepository(
         try {
             api.postVote(vote, userId)
             votes = votes.orEmpty().filter { it.sessionId != sessionId }.plus(vote)
-        } catch (pipelineError: ReceivePipelineException) {
-            val apiError = (pipelineError.cause as? BadResponseStatusException)
-            val code = apiError?.response?.status?.value
-            throw when (code) {
+        } catch (apiError: ResponseException) {
+            val code = apiError.response.status
+            throw when (code.value) {
                 477 -> TooEarlyVote()
                 478 -> TooLateVote()
                 else -> CannotPostVote()

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Druk-Bold-Web.ttf">
+            <string>DrukCyTT-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view userInteractionEnabled="NO" contentMode="scaleToFill" restorationIdentifier="ScheduleTableHeader" id="udH-FS-bEP" customClass="ScheduleTableHeader" customModule="iosApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="39"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H3o-oU-ad9" userLabel="Back">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="39"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLq-CX-sNV">
+                            <rect key="frame" x="33" y="9.5" width="24" height="20.5"/>
+                            <fontDescription key="fontDescription" name="DrukCyTT-Bold" family="Druk Cy TT" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Mt-VF-Fet">
+                            <rect key="frame" x="351.5" y="9.5" width="21.5" height="20.5"/>
+                            <fontDescription key="fontDescription" name="DrukCyTT-Bold" family="Druk Cy TT" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="1Mt-VF-Fet" firstAttribute="baseline" secondItem="eLq-CX-sNV" secondAttribute="baseline" id="TbI-Pb-mfX"/>
+                        <constraint firstAttribute="trailing" secondItem="1Mt-VF-Fet" secondAttribute="trailing" constant="2" id="XL5-c5-iGr"/>
+                        <constraint firstItem="eLq-CX-sNV" firstAttribute="leading" secondItem="H3o-oU-ad9" secondAttribute="leading" constant="33" id="sVy-3y-EQT"/>
+                        <constraint firstItem="1Mt-VF-Fet" firstAttribute="centerY" secondItem="H3o-oU-ad9" secondAttribute="centerY" id="vBQ-uA-sfc"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="H3o-oU-ad9" firstAttribute="top" secondItem="udH-FS-bEP" secondAttribute="top" id="2EW-d2-Fcb"/>
+                <constraint firstItem="H3o-oU-ad9" firstAttribute="leading" secondItem="udH-FS-bEP" secondAttribute="leading" id="hHL-lE-Dnz"/>
+                <constraint firstAttribute="trailing" secondItem="H3o-oU-ad9" secondAttribute="trailing" id="kpE-Xg-UQn"/>
+                <constraint firstAttribute="bottom" secondItem="H3o-oU-ad9" secondAttribute="bottom" id="mEn-Sx-HeY"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backView" destination="H3o-oU-ad9" id="ApW-bc-TR3"/>
+                <outlet property="nowLabel" destination="1Mt-VF-Fet" id="2YW-Hn-pUA"/>
+                <outlet property="timeLabel" destination="eLq-CX-sNV" id="gaZ-aH-pcN"/>
+            </connections>
+            <point key="canvasLocation" x="-348" y="-300"/>
+        </view>
+    </objects>
+</document>

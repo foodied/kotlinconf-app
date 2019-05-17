@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ScheduleTableCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScheduleTableCell" rowHeight="86" id="sa8-3W-s3r" userLabel="Schedule Table Cell" customClass="ScheduleTableCell" customModule="iosApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sa8-3W-s3r" id="LlR-QC-tpg">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="85.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1r-TL-wSb">
+                        <rect key="frame" x="33" y="15" width="342" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jry-cz-8vd">
+                        <rect key="frame" x="33" y="54.5" width="342" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favourite" translatesAutoresizingMaskIntoConstraints="NO" id="p6h-22-jXQ">
+                        <rect key="frame" x="5" y="11" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="jQm-3L-p83"/>
+                            <constraint firstAttribute="width" constant="20" id="nQt-HZ-dsu"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Jry-cz-8vd" firstAttribute="leading" secondItem="C1r-TL-wSb" secondAttribute="leading" id="BTv-HS-fjT"/>
+                    <constraint firstItem="C1r-TL-wSb" firstAttribute="leading" secondItem="Jry-cz-8vd" secondAttribute="leading" id="Ilb-Br-tlu"/>
+                    <constraint firstItem="p6h-22-jXQ" firstAttribute="leading" secondItem="LlR-QC-tpg" secondAttribute="leading" constant="5" id="Xdz-ab-vTI"/>
+                    <constraint firstItem="p6h-22-jXQ" firstAttribute="bottom" secondItem="C1r-TL-wSb" secondAttribute="firstBaseline" id="Zye-PD-GR8"/>
+                    <constraint firstItem="p6h-22-jXQ" firstAttribute="top" secondItem="LlR-QC-tpg" secondAttribute="topMargin" id="ezB-hf-xlu"/>
+                    <constraint firstItem="C1r-TL-wSb" firstAttribute="trailing" secondItem="Jry-cz-8vd" secondAttribute="trailing" id="hf1-oz-gr8"/>
+                    <constraint firstAttribute="trailing" secondItem="C1r-TL-wSb" secondAttribute="trailing" id="k65-ym-87r"/>
+                    <constraint firstItem="Jry-cz-8vd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="C1r-TL-wSb" secondAttribute="bottom" id="lZR-iI-lIi"/>
+                    <constraint firstItem="C1r-TL-wSb" firstAttribute="leading" secondItem="p6h-22-jXQ" secondAttribute="trailing" constant="8" id="oB0-1P-fvL"/>
+                    <constraint firstItem="Jry-cz-8vd" firstAttribute="bottom" secondItem="LlR-QC-tpg" secondAttribute="bottomMargin" id="yXJ-id-KpX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="favourite" destination="p6h-22-jXQ" id="idJ-Bo-I3O"/>
+                <outlet property="subtitleLabel" destination="Jry-cz-8vd" id="OwX-zp-anA"/>
+                <outlet property="titleLabel" destination="C1r-TL-wSb" id="szS-10-JzE"/>
+            </connections>
+            <point key="canvasLocation" x="157.59999999999999" y="-108.84557721139431"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="favourite" width="20" height="20"/>
+    </resources>
+</document>
