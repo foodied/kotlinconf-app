@@ -8,7 +8,7 @@ class ScheduleTableHeader : UITableViewHeaderFooterView {
     @IBOutlet weak var nowLabel: UILabel!
 
     func configureLook(start: String, end: String, isNow: Bool) {
-        timeLabel?.text = start + "..." + end
+        timeLabel?.text = start + "  .  .  .  " + end
 
         if (isNow) {
             backView?.backgroundColor = UIColor.redOrange
@@ -16,10 +16,5 @@ class ScheduleTableHeader : UITableViewHeaderFooterView {
         } else {
             nowLabel?.isHidden = true
         }
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        print(timeLabel)
     }
 }

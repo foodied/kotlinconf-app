@@ -10,9 +10,10 @@
 		2C1952F7228C14FE00BA0BB9 /* MainTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1952F6228C14FE00BA0BB9 /* MainTabController.swift */; };
 		2C1952FA228C1BF300BA0BB9 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1952F9228C1BF300BA0BB9 /* Screen.swift */; };
 		2C1952FC228C2B5F00BA0BB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C1952FB228C2B5F00BA0BB9 /* Assets.xcassets */; };
-		2C1952FF228C2C8C00BA0BB9 /* Druk-Bold-Web.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C1952FE228C2C8C00BA0BB9 /* Druk-Bold-Web.ttf */; };
 		2C195301228C306600BA0BB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C195300228C306600BA0BB9 /* Main.storyboard */; };
 		2C195303228C32EE00BA0BB9 /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C195302228C32EE00BA0BB9 /* ScheduleController.swift */; };
+		2C38A897228ED0F500BAF882 /* Druk-Bold-Desktop.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2C38A896228ED0F500BAF882 /* Druk-Bold-Desktop.otf */; };
+		2C38A899228EEBD000BAF882 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38A898228EEBD000BAF882 /* SessionController.swift */; };
 		B33E0794228D6C8E00F313A1 /* ScheduleTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B33E0793228D6C8E00F313A1 /* ScheduleTableCell.xib */; };
 		B33E0797228D6EC800F313A1 /* ScheduleTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33E0796228D6EC800F313A1 /* ScheduleTableHeader.swift */; };
 		B33E0799228D787200F313A1 /* ScheduleTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33E0798228D787200F313A1 /* ScheduleTableCell.swift */; };
@@ -38,9 +39,10 @@
 		2C1952F6228C14FE00BA0BB9 /* MainTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabController.swift; sourceTree = "<group>"; };
 		2C1952F9228C1BF300BA0BB9 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		2C1952FB228C2B5F00BA0BB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2C1952FE228C2C8C00BA0BB9 /* Druk-Bold-Web.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Druk-Bold-Web.ttf"; sourceTree = "<group>"; };
 		2C195300228C306600BA0BB9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2C195302228C32EE00BA0BB9 /* ScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleController.swift; sourceTree = "<group>"; };
+		2C38A896228ED0F500BAF882 /* Druk-Bold-Desktop.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Druk-Bold-Desktop.otf"; sourceTree = "<group>"; };
+		2C38A898228EEBD000BAF882 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
 		B33E0793228D6C8E00F313A1 /* ScheduleTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleTableCell.xib; sourceTree = "<group>"; };
 		B33E0796228D6EC800F313A1 /* ScheduleTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableHeader.swift; sourceTree = "<group>"; };
 		B33E0798228D787200F313A1 /* ScheduleTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableCell.swift; sourceTree = "<group>"; };
@@ -84,7 +86,7 @@
 		2C1952FD228C2C6C00BA0BB9 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				2C1952FE228C2C8C00BA0BB9 /* Druk-Bold-Web.ttf */,
+				2C38A896228ED0F500BAF882 /* Druk-Bold-Desktop.otf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -95,6 +97,7 @@
 				B33E0795228D6EB500F313A1 /* Components */,
 				2C1952F6228C14FE00BA0BB9 /* MainTabController.swift */,
 				2C195302228C32EE00BA0BB9 /* ScheduleController.swift */,
+				2C38A898228EEBD000BAF882 /* SessionController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -204,9 +207,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C1952FF228C2C8C00BA0BB9 /* Druk-Bold-Web.ttf in Resources */,
 				B33E079C228D86DB00F313A1 /* ScheduleTableHeader.xib in Resources */,
 				F861D7EB207FA4100085E80D /* LaunchScreen.storyboard in Resources */,
+				2C38A897228ED0F500BAF882 /* Druk-Bold-Desktop.otf in Resources */,
 				B33E0794228D6C8E00F313A1 /* ScheduleTableCell.xib in Resources */,
 				2C1952FC228C2B5F00BA0BB9 /* Assets.xcassets in Resources */,
 				2C195301228C306600BA0BB9 /* Main.storyboard in Resources */,
@@ -220,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C38A899228EEBD000BAF882 /* SessionController.swift in Sources */,
 				2C195303228C32EE00BA0BB9 /* ScheduleController.swift in Sources */,
 				F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */,
 				2C1952F7228C14FE00BA0BB9 /* MainTabController.swift in Sources */,

@@ -31,7 +31,7 @@ class ScheduleTableCell : UITableViewCell {
         subtitleLabel.font = UIFont.noteList
 
         titleLabel.textColor = UIColor.darkGrey
-        subtitleLabel.textColor = UIColor.white
+        subtitleLabel.textColor = UIColor.lightGray
 
         titleLabel.lineBreakMode = .byWordWrapping
 
@@ -48,6 +48,8 @@ class ScheduleTableCell : UITableViewCell {
 
         titleLabel.textColor = UIColor.white
         subtitleLabel.textColor = UIColor.white
+
+        separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 
         favourite.isHidden = true
     }
