@@ -6,16 +6,22 @@ class SessionController : UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var videoBox: YTPlayerView!
 
-    @IBOutlet weak var speakerLabel: UILabel!
+    @IBOutlet weak var speakerLabel: TouchableLabel!
     @IBOutlet weak var roomLabel: UILabel!
     @IBOutlet weak var slidesLabel: UILabel!
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         startButton.setImage(UIImage(named: "favouriteEmpty.png"), for: .selected)
         startButton.setImage(UIImage(named: "favourite.png"), for: .selected)
         videoBox.load(withVideoId: "wZZ7oFKsKzY")
 
-        let tapHandler = UIGestureRecognizer(target: <#T##Any?#>, action: <#T##Selector?#>)
+        speakerLabel.onTouchUp = {
+            let sessionBoard = UIStoryboard(name: "Main", bundle: nil)
+            let session = sessionBoard.instantiateViewController(withIdentifier: "Speaker")
+            self.navigationController?.pushViewController(session, animated: true)
+        }
     }
 
     @IBAction func backButtonTouch(_ sender: Any) {
@@ -25,4 +31,5 @@ class SessionController : UIViewController {
     @IBAction func favouriteClick(_ sender: Any) {
         startButton.isSelected = !startButton.isSelected
     }
+
 }

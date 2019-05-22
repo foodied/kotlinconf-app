@@ -7,5 +7,5 @@ target 'iosApp' do
 
   # Pods for iosApp
   pod "youtube-ios-player-helper", "~> 0.1.4"
-
+  pod 'Mapbox-iOS-SDK', '~> 4.11'
 end

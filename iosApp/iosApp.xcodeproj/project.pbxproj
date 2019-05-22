@@ -14,6 +14,9 @@
 		2C195303228C32EE00BA0BB9 /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C195302228C32EE00BA0BB9 /* ScheduleController.swift */; };
 		2C38A897228ED0F500BAF882 /* Druk-Bold-Desktop.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2C38A896228ED0F500BAF882 /* Druk-Bold-Desktop.otf */; };
 		2C38A899228EEBD000BAF882 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38A898228EEBD000BAF882 /* SessionController.swift */; };
+		2C416BA0229591C300BBA441 /* VenueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C416B9F229591C300BBA441 /* VenueController.swift */; };
+		2CF01419229586E800C235D1 /* ClickableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF01418229586E800C235D1 /* ClickableLabel.swift */; };
+		2CF0141B22958ACB00C235D1 /* SpeakerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF0141A22958ACB00C235D1 /* SpeakerController.swift */; };
 		A4D1A7653C1CCC140F63BC76 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B63761FCD6766EFFC591F3 /* Pods_iosApp.framework */; };
 		B33E0794228D6C8E00F313A1 /* ScheduleTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B33E0793228D6C8E00F313A1 /* ScheduleTableCell.xib */; };
 		B33E0797228D6EC800F313A1 /* ScheduleTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33E0796228D6EC800F313A1 /* ScheduleTableHeader.swift */; };
@@ -44,6 +47,9 @@
 		2C195302228C32EE00BA0BB9 /* ScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleController.swift; sourceTree = "<group>"; };
 		2C38A896228ED0F500BAF882 /* Druk-Bold-Desktop.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Druk-Bold-Desktop.otf"; sourceTree = "<group>"; };
 		2C38A898228EEBD000BAF882 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
+		2C416B9F229591C300BBA441 /* VenueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueController.swift; sourceTree = "<group>"; };
+		2CF01418229586E800C235D1 /* ClickableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickableLabel.swift; sourceTree = "<group>"; };
+		2CF0141A22958ACB00C235D1 /* SpeakerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerController.swift; sourceTree = "<group>"; };
 		38329C3B6630F2C423C8B780 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		57B63761FCD6766EFFC591F3 /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DF0A6266F708D12845A766A /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -108,10 +114,11 @@
 		B33E0791228D3C8600F313A1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B33E0795228D6EB500F313A1 /* Components */,
 				2C1952F6228C14FE00BA0BB9 /* MainTabController.swift */,
 				2C195302228C32EE00BA0BB9 /* ScheduleController.swift */,
 				2C38A898228EEBD000BAF882 /* SessionController.swift */,
+				2CF0141A22958ACB00C235D1 /* SpeakerController.swift */,
+				2C416B9F229591C300BBA441 /* VenueController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -121,6 +128,7 @@
 			children = (
 				B33E0796228D6EC800F313A1 /* ScheduleTableHeader.swift */,
 				B33E0798228D787200F313A1 /* ScheduleTableCell.swift */,
+				2CF01418229586E800C235D1 /* ClickableLabel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -163,6 +171,7 @@
 		F861D7DF207FA40F0085E80D /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				B33E0795228D6EB500F313A1 /* Components */,
 				B33E0791228D3C8600F313A1 /* Controllers */,
 				2C1952F8228C1BE800BA0BB9 /* utils */,
 				2C1952E9228BFB5B00BA0BB9 /* UI */,
@@ -254,12 +263,16 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks.sh",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/youtube_ios_player_helper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,11 +310,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C38A899228EEBD000BAF882 /* SessionController.swift in Sources */,
+				2CF01419229586E800C235D1 /* ClickableLabel.swift in Sources */,
 				2C195303228C32EE00BA0BB9 /* ScheduleController.swift in Sources */,
+				2C416BA0229591C300BBA441 /* VenueController.swift in Sources */,
 				F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */,
 				2C1952F7228C14FE00BA0BB9 /* MainTabController.swift in Sources */,
 				2C1952FA228C1BF300BA0BB9 /* Screen.swift in Sources */,
 				B33E0797228D6EC800F313A1 /* ScheduleTableHeader.swift in Sources */,
+				2CF0141B22958ACB00C235D1 /* SpeakerController.swift in Sources */,
 				B33E0799228D787200F313A1 /* ScheduleTableCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

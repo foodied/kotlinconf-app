@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Druk-Bold-Desktop.otf</string>
@@ -41,5 +43,9 @@
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
+	<key>MGLMapboxAccessToken</key>
+	<string>pk.eyJ1IjoibGVvbmlkc3QiLCJhIjoiY2p0ZnIxNHdjMXZ2aTQ5bnVwZ3B4NjA1YyJ9.Yf-G_yNQihEspcC4gbD1tg</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allows to show your location on conference map</string>
 </dict>
 </plist>
