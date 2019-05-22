@@ -15,3 +15,11 @@ local.properties
 .DS_Store
 .externalNativeBuild
 .database
+
+*.otf
+*.ttf
+Pods/
+
+.project
+.settings
+.classpath
