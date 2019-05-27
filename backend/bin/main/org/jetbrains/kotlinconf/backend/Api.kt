@@ -102,14 +102,14 @@ internal fun Routing.apiFavorite(database: Database, production: Boolean) {
         }
         post {
             val principal = call.validatePrincipal(database) ?: throw Unauthorized()
-            val favorite = call.receive<Favorite>()
+            val favorite = call.receive<FavoriteData>()
             val sessionId = favorite.sessionId
             database.createFavorite(principal.token, sessionId)
             call.respond(HttpStatusCode.Created)
         }
         delete {
             val principal = call.validatePrincipal(database) ?: throw Unauthorized()
-            val favorite = call.receive<Favorite>()
+            val favorite = call.receive<FavoriteData>()
             val sessionId = favorite.sessionId
             database.deleteFavorite(principal.token, sessionId)
             call.respond(HttpStatusCode.OK)
@@ -142,7 +142,7 @@ internal fun Routing.apiVote(database: Database, production: Boolean) {
         }
         post {
             val principal = call.validatePrincipal(database) ?: throw Unauthorized()
-            val vote = call.receive<Vote>()
+            val vote = call.receive<VoteData>()
             val sessionId = vote.sessionId
             val rating = vote.rating
 
@@ -168,7 +168,7 @@ internal fun Routing.apiVote(database: Database, production: Boolean) {
         }
         delete {
             val principal = call.validatePrincipal(database) ?: throw Unauthorized()
-            val vote = call.receive<Vote>()
+            val vote = call.receive<VoteData>()
             val sessionId = vote.sessionId
             database.deleteVote(principal.token, sessionId)
             call.respond(HttpStatusCode.OK)

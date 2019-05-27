@@ -12,8 +12,8 @@ class SessionDetailsPresenter(
     private val repository: DataRepository
 ) : CoroutinePresenter(uiContext, view) {
 
-    private lateinit var session: SessionModel
-    private var rating: SessionRating? = null
+    private lateinit var session: Session
+    private var rating: VoteData? = null
     private val onRefreshListener: () -> Unit = this::refreshDataFromRepo
 
     fun onCreate() {
@@ -26,7 +26,7 @@ class SessionDetailsPresenter(
         repository.onRefreshListeners -= onRefreshListener
     }
 
-    fun rateSessionClicked(newRating: SessionRating) {
+    fun rateSessionClicked(newRating: VoteData) {
         launch {
             view.setRatingClickable(false)
             if (rating != newRating) {

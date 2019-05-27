@@ -6,7 +6,7 @@ import kotlin.coroutines.*
 open class CoroutinePresenter(
     private val mainContext: CoroutineContext, // TODO: Use Dispatchers.Main instead when it will be supported on iOS
     private val baseView: BaseView
-): CoroutineScope {
+) : CoroutineScope {
 
     private val job = Job()
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->

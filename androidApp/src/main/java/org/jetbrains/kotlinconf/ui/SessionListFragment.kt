@@ -12,7 +12,6 @@ import android.widget.*
 import com.brandongogetap.stickyheaders.*
 import com.brandongogetap.stickyheaders.exposed.*
 import kotlinx.coroutines.*
-import kotlinx.coroutines.android.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.*
 import org.jetbrains.anko.support.v4.*
@@ -101,13 +100,13 @@ abstract class SessionListFragment : BaseFragment(), AnkoComponent<Context>, Ses
 
     class SessionsAdapter(
         private val context: Context,
-        private val onSessionClick: (SessionModel) -> Unit
+        private val onSessionClick: (Session) -> Unit
     ) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), StickyHeaderHandler {
 
         private var _data: List<*> = emptyList<Any>()
         override fun getAdapterData(): List<*> = _data
 
-        var sessions: List<SessionModel> = emptyList()
+        var sessions: List<Session> = emptyList()
             set(value) {
                 field = value
                 _data = field
@@ -120,7 +119,7 @@ abstract class SessionListFragment : BaseFragment(), AnkoComponent<Context>, Ses
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             when (holder) {
                 is SessionViewHolder -> {
-                    val session = _data[position] as SessionModel
+                    val session = _data[position] as Session
                     with(holder) {
                         setTitle(session.title)
                         val detailStrings: List<String> =
@@ -132,7 +131,7 @@ abstract class SessionListFragment : BaseFragment(), AnkoComponent<Context>, Ses
 
                         isFirstInTimeGroup = position == 0 ||
                                 _data[position - 1] is HeaderItem ||
-                                (_data[position - 1] as SessionModel).startsAt != session.startsAt
+                                (_data[position - 1] as Session).startsAt != session.startsAt
                     }
                 }
                 is HeaderViewHolder -> {
@@ -142,7 +141,7 @@ abstract class SessionListFragment : BaseFragment(), AnkoComponent<Context>, Ses
             }
         }
 
-        private val SessionModel.roomText: String?
+        private val Session.roomText: String?
             get() = room?.let { context.getString(R.string.room_format_list, it) }
 
         override fun getItemViewType(position: Int): Int {

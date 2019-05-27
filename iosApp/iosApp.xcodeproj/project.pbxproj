@@ -12,6 +12,8 @@
 		2C1952FC228C2B5F00BA0BB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C1952FB228C2B5F00BA0BB9 /* Assets.xcassets */; };
 		2C195301228C306600BA0BB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C195300228C306600BA0BB9 /* Main.storyboard */; };
 		2C195303228C32EE00BA0BB9 /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C195302228C32EE00BA0BB9 /* ScheduleController.swift */; };
+		2C1F9BFC229BDFF1009F11F4 /* kotlinconf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C1F9BFB229BDFF1009F11F4 /* kotlinconf.framework */; };
+		2C1F9BFD229BDFF1009F11F4 /* kotlinconf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2C1F9BFB229BDFF1009F11F4 /* kotlinconf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2C38A897228ED0F500BAF882 /* Druk-Bold-Desktop.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2C38A896228ED0F500BAF882 /* Druk-Bold-Desktop.otf */; };
 		2C38A899228EEBD000BAF882 /* SessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C38A898228EEBD000BAF882 /* SessionController.swift */; };
 		2C416BA0229591C300BBA441 /* VenueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C416B9F229591C300BBA441 /* VenueController.swift */; };
@@ -33,6 +35,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2C1F9BFD229BDFF1009F11F4 /* kotlinconf.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,6 +48,7 @@
 		2C1952FB228C2B5F00BA0BB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C195300228C306600BA0BB9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2C195302228C32EE00BA0BB9 /* ScheduleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleController.swift; sourceTree = "<group>"; };
+		2C1F9BFB229BDFF1009F11F4 /* kotlinconf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = kotlinconf.framework; path = "../common/build/fat-framework/kotlinconf.framework"; sourceTree = "<group>"; };
 		2C38A896228ED0F500BAF882 /* Druk-Bold-Desktop.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Druk-Bold-Desktop.otf"; sourceTree = "<group>"; };
 		2C38A898228EEBD000BAF882 /* SessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionController.swift; sourceTree = "<group>"; };
 		2C416B9F229591C300BBA441 /* VenueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueController.swift; sourceTree = "<group>"; };
@@ -69,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4D1A7653C1CCC140F63BC76 /* Pods_iosApp.framework in Frameworks */,
+				2C1F9BFC229BDFF1009F11F4 /* kotlinconf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +158,7 @@
 		F861D7D4207FA40F0085E80D = {
 			isa = PBXGroup;
 			children = (
+				2C1F9BFB229BDFF1009F11F4 /* kotlinconf.framework */,
 				F861D7DF207FA40F0085E80D /* iosApp */,
 				F861D7DE207FA40F0085E80D /* Products */,
 				AD7ED1C2F349FEB11F1862FB /* Pods */,
@@ -461,12 +467,20 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2ZEFAR8TH3;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/youtube-ios-player-helper\"",
+					"\"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic\"",
+					"../common/build/fat-framework",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework/Headers\"",
+					"../common/build/fat-framework/kotlinconf.framework/Headers",
+				);
 				INFOPLIST_FILE = iosApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-v",
 					"$(inherited)",
@@ -486,12 +500,20 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2ZEFAR8TH3;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/youtube-ios-player-helper\"",
+					"\"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic\"",
+					"../common/build/fat-framework",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework/Headers\"",
+					"../common/build/fat-framework/kotlinconf.framework/Headers",
+				);
 				INFOPLIST_FILE = iosApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"-v",
 					"$(inherited)",

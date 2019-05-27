@@ -3,8 +3,7 @@ package org.jetbrains.kotlinconf.data
 import kotlinx.serialization.*
 
 @Serializable
-data class CategoryItem(
-    val name: String,
-    val id: Int,
-    val sort: Int
+data class QuestionAnswerData(
+    val questionId: Int,
+    val answerValue: String
 )

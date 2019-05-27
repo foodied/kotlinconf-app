@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.FatFrameworkTask
+
 apply plugin: 'kotlin-multiplatform'
 apply plugin: 'kotlinx-serialization'
 
@@ -5,11 +7,38 @@ kotlin {
     targets {
         fromPreset(presets.jvm, 'jvm')
     }
-    iosX64("ios") {
-        binaries {
-            framework()
+
+
+    def iosArm32 = iosArm32("iosArm32")
+    def iosArm64 = iosArm64("iosArm64")
+    def iosX64 = iosX64("iosX64")
+
+    def frameworkName = "kotlinconf"
+
+    configure([iosArm32, iosArm64, iosX64]) {
+        binaries.framework {
+            baseName = frameworkName
         }
     }
+
+    task debugFatFramework(type: FatFrameworkTask) {
+        baseName = frameworkName
+        from iosArm32.binaries.getFramework("DEBUG"), iosArm64.binaries.getFramework("DEBUG"), iosX64.binaries.getFramework("DEBUG")
+
+//        destinationDir = buildDir.resolve("fat-framework/debug")
+
+        group = "Universal framework"
+        description = "Builds a universal (fat) debug framework"
+    }
+
+    task releaseFatFramework(type: FatFrameworkTask) {
+        baseName = frameworkName
+        from iosArm32.binaries.getFramework("RELEASE"), iosArm64.binaries.getFramework("RELEASE"), iosX64.binaries.getFramework("RELEASE")
+//        destinationDir = buildDir.resolve("fat-framework/release")
+        group = "Universal framework"
+        description = "Builds a universal (fat) release framework"
+    }
+
     sourceSets {
         commonMain {
             dependencies {
@@ -52,22 +81,26 @@ kotlin {
                 implementation "io.ktor:ktor-client-serialization-native:$ktor_version"
             }
         }
-    }
-}
 
-task copyFramework {
-    def buildType = project.findProperty('kotlin.build.type') ?: 'DEBUG'
-    def target = project.findProperty('kotlin.target') ?: 'ios'
-    dependsOn kotlin.targets."$target".binaries.getFramework(buildType).linkTask
-
-    doLast {
-        def srcFile = kotlin.targets."$target".binaries.getFramework(buildType).outputFile
-        def targetDir = getProperty('configuration.build.dir')
-        copy {
-            from srcFile.parent
-            into targetDir
-            include 'app.framework/**'
-            include 'app.framework.dSYM'
+        configure([iosArm32Main, iosArm64Main, iosX64Main]) {
+            dependsOn iosMain
         }
     }
 }
+
+//task copyFramework {
+//    def buildType = project.findProperty('kotlin.build.type') ?: 'DEBUG'
+//    def target = project.findProperty('kotlin.target') ?: 'ios'
+//    dependsOn kotlin.targets."$target".binaries.getFramework(buildType).linkTask
+//
+//    doLast {
+//        def srcFile = kotlin.targets."$target".binaries.getFramework(buildType).outputFile
+//        def targetDir = getProperty('configuration.build.dir')
+//        copy {
+//            from srcFile.parent
+//            into targetDir
+//            include 'app.framework/**'
+//            include 'app.framework.dSYM'
+//        }
+//    }
+//}

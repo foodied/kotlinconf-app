@@ -29,7 +29,7 @@ class SessionListPresenter(
         repository.onRefreshListeners -= onRefreshListener
     }
 
-    fun showSessionDetails(session: SessionModel) {
+    fun showSessionDetails(session: Session) {
         navigationManager.showSessionDetails(session.id)
     }
 

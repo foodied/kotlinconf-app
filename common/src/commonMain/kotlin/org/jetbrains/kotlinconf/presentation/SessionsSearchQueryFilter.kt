@@ -2,7 +2,7 @@ package org.jetbrains.kotlinconf.presentation
 
 import org.jetbrains.kotlinconf.*
 
-fun List<SessionModel>.filter(searchQuery: String?): List<SessionModel> {
+fun List<Session>.filter(searchQuery: String?): List<Session> {
     searchQuery?.takeUnless { it.isEmpty() } ?: return this
     val searchQueryLower = searchQuery.toLowerCase()
     return filter { session ->

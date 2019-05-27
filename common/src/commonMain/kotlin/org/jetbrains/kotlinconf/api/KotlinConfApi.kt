@@ -13,9 +13,9 @@ class KotlinConfApi(private val endPoint: String, private val userId: String) {
     private val client = HttpClient {
         install(JsonFeature) {
             serializer = KotlinxSerializer().apply {
-                 setMapper(AllData::class, AllData.serializer())
-                 setMapper(Favorite::class, Favorite.serializer())
-                 setMapper(Vote::class, Vote.serializer())
+                setMapper(ConferenceData::class, ConferenceData.serializer())
+                setMapper(FavoriteData::class, FavoriteData.serializer())
+                setMapper(VoteData::class, VoteData.serializer())
             }
         }
     }
@@ -28,29 +28,29 @@ class KotlinConfApi(private val endPoint: String, private val userId: String) {
         it.status.isSuccess()
     }
 
-    suspend fun getAll(userId: String?): AllData = client.get {
+    suspend fun getAll(userId: String?): ConferenceData = client.get {
         apiUrl("all", userId)
     }
 
-    suspend fun postFavorite(favorite: Favorite, userId: String): Unit = client.post {
+    suspend fun postFavorite(favorite: FavoriteData, userId: String): Unit = client.post {
         apiUrl("favorites", userId)
         json()
         body = favorite
     }
 
-    suspend fun deleteFavorite(favorite: Favorite, userId: String): Unit = client.delete {
+    suspend fun deleteFavorite(favorite: FavoriteData, userId: String): Unit = client.delete {
         apiUrl("favorites", userId)
         json()
         body = favorite
     }
 
-    suspend fun postVote(vote: Vote, userId: String): Unit = client.post {
+    suspend fun postVote(vote: VoteData, userId: String): Unit = client.post {
         apiUrl("votes", userId)
         json()
         body = vote
     }
 
-    suspend fun deleteVote(vote: Vote, userId: String): Unit = client.delete {
+    suspend fun deleteVote(vote: VoteData, userId: String): Unit = client.delete {
         apiUrl("votes", userId)
         json()
         body = vote

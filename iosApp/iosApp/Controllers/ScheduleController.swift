@@ -1,24 +1,17 @@
 import Foundation
 import UIKit
+import kotlinconf
 
 let ScheduleCellId = "ScheduleTableCell"
 let ScheduleHeaderId = "ScheduleTableHeader"
 
 @IBDesignable
-class ScheduleController : UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet weak var scheduleTable: UITableView!
+class ScheduleController : UIViewController, UITableViewDelegate, UITableViewDataSource, SessionListView  {
 
-    private let tableData = [[
-            SessionData(title: "Mathematical Modeling with Kotlin", startTime: "9:30", endTime: "10:15", location: "Room A", author: "Aaron Arnst", isFavourite: true),
-            SessionData(title: "GraphQL powered by Kotlin", startTime: "9:30", endTime: "10:15", location: "Room A", author: "Aaron Arnst", isFavourite: true),
-        ], [
-            SessionData(title: "Keynote", startTime: "8:00", endTime: "10:15", location: "Room A", author: "Aaron Arnst", isFavourite: false),
-        ], [
-            SessionData(title: "GraphQL powered by Kotlin", startTime: "9:30", endTime: "10:15", location: "Room A", author: "Aaron Arnst", isFavourite: false),
-            SessionData(title: "Safe(r) Kotlin Code - Static Analysis tools", startTime: "9:30", endTime: "10:15", location: "Room A", author: "Aaron Arnst", isFavourite: false),
-            SessionData(title: "Android Suspenders", startTime: "9:30", endTime: "10:15", location: "Room A", author: "Aaron Arnst", isFavourite: false),
-        ]
-    ]
+    @IBOutlet weak var scheduleTable: UITableView!
+    var isUpdating: Bool  = false
+
+    private let tableData: [[SessionModel]] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +23,13 @@ class ScheduleController : UIViewController, UITableViewDelegate, UITableViewDat
         scheduleTable.separatorColor = UIColor.darkGrey
 
         navigationController?.isNavigationBarHidden = true
+    }
+
+    func onUpdate(sessions: [SessionModel], favorites: [SessionModel]) {
+
+    }
+
+    func showError(error: KotlinThrowable) {
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -82,11 +82,3 @@ class ScheduleController : UIViewController, UITableViewDelegate, UITableViewDat
     }
 }
 
-struct SessionData {
-    let title: String
-    let startTime: String
-    let endTime: String
-    let location: String
-    let author: String
-    let isFavourite: Bool
-}

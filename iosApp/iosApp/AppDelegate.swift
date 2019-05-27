@@ -1,23 +1,17 @@
 import UIKit
+import kotlinconf
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
-    func application(
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
-    ) -> Bool {
-        return true
+    public static let service: KotlinConfDataRepository = KotlinConfDataRepository(
+        endPoint: "https://api.kotlinconf.com/",
+        uid: generateUuid(),
+        settings: PlatformSettings()
+    )
+
+    private static func generateUuid() -> String {
+        return "ios-" + (UIDevice.current.identifierForVendor ?? UUID()).uuidString
     }
-
-    func applicationWillResignActive(_ application: UIApplication) {}
-
-    func applicationDidEnterBackground(_ application: UIApplication) {}
-
-    func applicationWillEnterForeground(_ application: UIApplication) {}
-
-    func applicationDidBecomeActive(_ application: UIApplication) {}
-
-    func applicationWillTerminate(_ application: UIApplication) {}
 }

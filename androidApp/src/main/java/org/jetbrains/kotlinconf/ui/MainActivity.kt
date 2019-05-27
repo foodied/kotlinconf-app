@@ -123,7 +123,7 @@ class MainActivity : AppCompatActivity(), AnkoComponent<Context>, NavigationMana
                 R.anim.enter_from_left,
                 R.anim.exit_to_right
             )
-            .addToBackStack("Session")
+            .addToBackStack("SessionData")
             .replace(R.id.fragment_container, fragment, SessionDetailsFragment.TAG)
             .commit()
     }

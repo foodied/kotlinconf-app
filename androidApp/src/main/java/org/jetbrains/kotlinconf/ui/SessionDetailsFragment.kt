@@ -9,11 +9,9 @@ import android.support.design.widget.CollapsingToolbarLayout.LayoutParams.*
 import android.support.v7.app.*
 import android.support.v7.widget.Toolbar
 import android.view.*
-import android.view.View.*
 import android.widget.*
 import com.bumptech.glide.*
 import kotlinx.coroutines.*
-import kotlinx.coroutines.android.*
 import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout
 import org.jetbrains.anko.*
 import org.jetbrains.anko.appcompat.v7.toolbar
@@ -22,7 +20,7 @@ import org.jetbrains.anko.support.v4.*
 import org.jetbrains.kotlinconf.*
 import org.jetbrains.kotlinconf.R
 import org.jetbrains.kotlinconf.data.*
-import org.jetbrains.kotlinconf.data.SessionRating.*
+import org.jetbrains.kotlinconf.data.VoteData.*
 import org.jetbrains.kotlinconf.presentation.*
 
 class SessionDetailsFragment : BaseFragment(), SessionDetailsView {
@@ -67,8 +65,8 @@ class SessionDetailsFragment : BaseFragment(), SessionDetailsView {
         menu.clear()
     }
 
-    override fun setupRatingButtons(rating: SessionRating?) {
-        fun selectButton(target: SessionRating): Int = when (rating) {
+    override fun setupRatingButtons(rating: VoteData?) {
+        fun selectButton(target: VoteData): Int = when (rating) {
             target -> R.drawable.round_toggle_button_background_selected
             else -> R.drawable.round_toggle_button_background
         }
@@ -84,7 +82,7 @@ class SessionDetailsFragment : BaseFragment(), SessionDetailsView {
         badButton.isClickable = clickable
     }
 
-    override fun updateView(isFavorite: Boolean, session: SessionModel) {
+    override fun updateView(isFavorite: Boolean, session: Session) {
         collapsingToolbar.title = session.title
         speakersTextView.text = session.speakers.joinToString(separator = ", ") { it.fullName }
 
@@ -111,14 +109,14 @@ class SessionDetailsFragment : BaseFragment(), SessionDetailsView {
             }
     }
 
-    private val SessionModel.timeString: String
+    private val Session.timeString: String
         get() {
             val startsAt = startsAt
             val endsAt = endsAt
             return if (startsAt != null && endsAt != null) (startsAt to endsAt).toReadableString() else ""
         }
 
-    private val SessionModel.roomText: String?
+    private val Session.roomText: String?
         get() = room?.let { getString(R.string.room_format_details, it) }
 
     private fun setUpActionBar() {

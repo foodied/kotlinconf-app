@@ -1,6 +1,5 @@
 package org.jetbrains.kotlinconf.model
 
-import io.ktor.client.call.*
 import io.ktor.client.features.*
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
@@ -13,15 +12,18 @@ import kotlin.properties.*
 import kotlin.properties.Delegates.observable
 
 class KotlinConfDataRepository(
-        endPoint: String,
-        uid: String,
-        private val settings: Settings
+    endPoint: String,
+    uid: String,
+    private val settings: Settings
 ) : DataRepository {
     private val api = KotlinConfApi(endPoint, uid)
 
-    override var sessions: List<SessionModel>? by bindToPreferencesByKey("settingsKey", SessionModel.serializer().list)
-    override var favorites: List<SessionModel>? by bindToPreferencesByKey("favoritesKey", SessionModel.serializer().list)
-    override var votes: List<Vote>? by bindToPreferencesByKey("votesKey", Vote.serializer().list)
+    override var sessions: List<Session>? by bindToPreferencesByKey("settingsKey", Session.serializer().list)
+    override var favorites: List<Session>? by bindToPreferencesByKey(
+        "favoritesKey",
+        Session.serializer().list
+    )
+    override var votes: List<VoteData>? by bindToPreferencesByKey("votesKey", VoteData.serializer().list)
     override var userId: String? by bindToPreferencesByKey("userIdKey", String.serializer())
 
     override var privacyPolicyAccepted: Boolean
@@ -64,14 +66,14 @@ class KotlinConfDataRepository(
         privacyPolicyAccepted = true
     }
 
-    override fun getRating(sessionId: String): SessionRating? =
+    override fun getRating(sessionId: String): VoteData? =
         votes?.find { sessionId == it.sessionId }
             ?.rating
-            ?.let { SessionRating.valueOf(it) }
+            ?.let { VoteData.valueOf(it) }
 
-    override suspend fun addRating(sessionId: String, rating: SessionRating) {
+    override suspend fun addRating(sessionId: String, rating: VoteData) {
         val userId = userId ?: throw Unauthorized()
-        val vote = Vote(sessionId, rating.value)
+        val vote = VoteData(sessionId, rating.value)
         try {
             api.postVote(vote, userId)
             votes = votes.orEmpty().filter { it.sessionId != sessionId }.plus(vote)
@@ -92,7 +94,7 @@ class KotlinConfDataRepository(
     override suspend fun removeRating(sessionId: String) {
         val userId = userId ?: throw Unauthorized()
         try {
-            api.deleteVote(Vote(sessionId, 0), userId)
+            api.deleteVote(VoteData(sessionId, 0), userId)
             votes = votes?.filter { it.sessionId != sessionId }
         } catch (e: Throwable) {
             throw CannotDeleteVote()
@@ -103,7 +105,7 @@ class KotlinConfDataRepository(
 
     override suspend fun setFavorite(sessionId: String, isFavorite: Boolean) {
         val userId = userId ?: throw Unauthorized()
-        val favorite = Favorite(sessionId)
+        val favorite = FavoriteData(sessionId)
         try {
             favorites = if (isFavorite) {
                 api.postFavorite(favorite, userId)

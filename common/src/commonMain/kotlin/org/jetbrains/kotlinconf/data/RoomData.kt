@@ -4,9 +4,8 @@ import kotlinx.serialization.*
 
 // This format is enforced by Sessionize and it should not be changed unless we extract Sessionize DTO
 @Serializable
-data class Category(
+data class RoomData(
+    val name: String,
     val id: Int,
-    val sort: Int,
-    val title: String,
-    val items: List<CategoryItem>
+    val sort: Int
 )

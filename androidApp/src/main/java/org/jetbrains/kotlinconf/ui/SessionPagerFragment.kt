@@ -78,14 +78,14 @@ class SessionPagerFragment : Fragment(), AnkoComponent<Context> {
 
     class AllSessionsFragment : SessionListFragment() {
         override val title: String = "All"
-        override fun onUpdate(sessions: List<SessionModel>, favorites: List<SessionModel>) {
+        override fun onUpdate(sessions: List<Session>, favorites: List<Session>) {
             sessionsAdapter.sessions = sessions
         }
     }
 
     class FavoriteSessionsFragment : SessionListFragment() {
         override val title: String = "Favorites"
-        override fun onUpdate(sessions: List<SessionModel>, favorites: List<SessionModel>) {
+        override fun onUpdate(sessions: List<Session>, favorites: List<Session>) {
             sessionsAdapter.sessions = favorites
         }
     }

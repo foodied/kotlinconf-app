@@ -4,11 +4,11 @@ import kotlinx.serialization.*
 
 // This format is enforced by Sessionize and it should not be changed unless we extract Sessionize DTO
 @Serializable
-data class Session(
+data class SessionData(
     val id: String,
     val isServiceSession: Boolean,
     val isPlenumSession: Boolean,
-    val questionAnswers: List<QuestionAnswer>,
+    val questionAnswers: List<QuestionAnswerData>,
     val speakers: List<String>,
     @SerialName("description")
     val descriptionText: String?,

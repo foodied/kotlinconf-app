@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import kotlinconf
 
 @IBDesignable
 class ScheduleTableCell : UITableViewCell {
@@ -7,16 +8,16 @@ class ScheduleTableCell : UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
 
-    func configureLook(data: SessionData) {
+    func configureLook(data: SessionModel) {
         titleLabel?.text = data.title
-        subtitleLabel?.text = data.location + ", " + data.author
+        subtitleLabel?.text = data.room + ", " + data.author
 
-        if (data.isFavourite) {
-            self.configureFavourite(data: data)
-            return
-        }
+//        if (data.isFavourite) {
+//            self.configureFavourite(data: data)
+//            return
+//        }
 
-        if (data.startTime == "8:00") {
+        if (data.startsAtStr == "8:00") {
             configureNow(data: data)
             return
         }
@@ -24,7 +25,7 @@ class ScheduleTableCell : UITableViewCell {
         configurePlain(data: data)
     }
 
-    private func configureFavourite(data: SessionData) {
+    private func configureFavourite(data: SessionModel) {
         subtitleLabel?.text = data.startTime + "-" + data.endTime + ", " + data.location
 
         titleLabel.font = UIFont.headerListMed
@@ -40,7 +41,7 @@ class ScheduleTableCell : UITableViewCell {
         favourite.isHidden = false
     }
 
-    private func configureNow(data: SessionData) {
+    private func configureNow(data: SessionModel) {
         self.backgroundColor = UIColor.redOrange
 
         titleLabel.font = UIFont.headerListSmall
@@ -54,7 +55,7 @@ class ScheduleTableCell : UITableViewCell {
         favourite.isHidden = true
     }
 
-    private func configurePlain(data: SessionData) {
+    private func configurePlain(data: SessionModel) {
         titleLabel.font = UIFont.headerListSmall
         subtitleLabel.font = UIFont.noteListSmall
 
