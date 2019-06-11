@@ -3,78 +3,30 @@ package org.jetbrains.kotlinconf.ui
 import android.content.*
 import android.os.*
 import android.support.v7.app.*
-import android.support.v7.widget.*
 import android.view.*
 import org.jetbrains.anko.*
 import org.jetbrains.kotlinconf.*
+import org.jetbrains.kotlinconf.model.*
 import org.jetbrains.kotlinconf.presentation.*
 
-class MainActivity : AppCompatActivity(), AnkoComponent<Context>, NavigationManager, SearchQueryProvider, AnkoLogger {
-
+class MainActivity : AppCompatActivity(), AnkoComponent<Context>, NavigationManager, AnkoLogger {
     private val repository by lazy { (application as KotlinConfApplication).dataRepository }
-    private val presenter by lazy { MainPresenter(this, repository) }
-
-    override var searchQuery: String = ""
-        private set
-
-    private val queryTextChangedListeners: MutableList<(String) -> Unit> = mutableListOf()
-
-    override fun addOnQueryChangedListener(listener: (String) -> Unit) {
-        queryTextChangedListeners.add(listener)
-    }
+    private val presenter by lazy { MainScreenPresenter(this, repository) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(createView(AnkoContext.create(this)))
 
         if (savedInstanceState == null) {
-            showSessionList()
+            showSessions()
             presenter.onCreate()
-        } else {
-            savedInstanceState.getString(SEARCH_QUERY_KEY)?.let { searchQuery = it }
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle?) {
-        super.onSaveInstanceState(outState)
-        outState?.putString(SEARCH_QUERY_KEY, searchQuery)
     }
 
     override fun createView(ui: AnkoContext<Context>): View = with(ui) {
         frameLayout {
             id = R.id.fragment_container
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        val searchViewMenuItem = menu.findItem(R.id.search)
-        val searchView = searchViewMenuItem.actionView as SearchView
-        if (searchQuery.isNotEmpty()) {
-            supportActionBar?.setLogo(R.drawable.kotlinconf_logo)
-            searchView.setQuery(searchQuery, false)
-            searchView.isIconified = false
-        }
-
-        searchView.setOnSearchClickListener {
-            supportActionBar?.setLogo(R.drawable.kotlinconf_logo)
-        }
-
-        searchView.setOnCloseListener {
-            supportActionBar?.setLogo(R.drawable.kotlinconf_logo_text)
-            return@setOnCloseListener false
-        }
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean = false
-            override fun onQueryTextChange(newText: String): Boolean {
-                queryTextChangedListeners.forEach { it.invoke(newText) }
-                searchQuery = newText
-                return true
-            }
-        })
-
-        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -102,7 +54,7 @@ class MainActivity : AppCompatActivity(), AnkoComponent<Context>, NavigationMana
             .commit()
     }
 
-    override fun showSessionList() {
+    override fun showSessions() {
         supportFragmentManager
             .beginTransaction()
             .add(R.id.fragment_container, SessionPagerFragment(), SessionListFragment.TAG)
@@ -113,8 +65,8 @@ class MainActivity : AppCompatActivity(), AnkoComponent<Context>, NavigationMana
         PrivacyPolicyAcceptanceFragment().show(supportFragmentManager, PrivacyPolicyAcceptanceFragment.TAG)
     }
 
-    override fun showSessionDetails(sessionId: String) {
-        val fragment = SessionDetailsFragment.forSession(sessionId)
+    override fun showSessionDetails(session: Session) {
+        val fragment = SessionDetailsFragment.forSession(session)
         supportFragmentManager
             .beginTransaction()
             .setCustomAnimations(
@@ -126,6 +78,22 @@ class MainActivity : AppCompatActivity(), AnkoComponent<Context>, NavigationMana
             .addToBackStack("SessionData")
             .replace(R.id.fragment_container, fragment, SessionDetailsFragment.TAG)
             .commit()
+    }
+
+    override fun showSpeakers() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showFAQ() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showVenueMap() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun showSpeaker(speaker: Speaker) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     companion object {

@@ -3,61 +3,57 @@ package org.jetbrains.kotlinconf.presentation
 import kotlinx.coroutines.*
 import org.jetbrains.kotlinconf.*
 import org.jetbrains.kotlinconf.data.*
+import org.jetbrains.kotlinconf.model.*
 import kotlin.coroutines.*
 
+/**
+ * Single session presenter.
+ * Keep separate local values for favorite and rating.
+ */
 class SessionDetailsPresenter(
-    uiContext: CoroutineContext,
     private val view: SessionDetailsView,
-    private val sessionId: String,
-    private val repository: DataRepository
-) : CoroutinePresenter(uiContext, view) {
+    private val session: Session,
+    private val repository: DataRepository,
+    context: CoroutineContext = Dispatchers.Main
+) : CoroutinePresenter(view, context) {
+    private var localRating: RatingData? = session.rating
+    private var localFavorite: Boolean = session.isFavorite
 
-    private lateinit var session: Session
-    private var rating: VoteData? = null
-    private val onRefreshListener: () -> Unit = this::refreshDataFromRepo
-
-    fun onCreate() {
-        refreshDataFromRepo()
-        repository.onRefreshListeners += onRefreshListener
+    init {
+        view.updateSession(session)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        repository.onRefreshListeners -= onRefreshListener
-    }
-
-    fun rateSessionClicked(newRating: VoteData) {
+    /**
+     * Handle rating button event.
+     */
+    fun onRatingButtonClicked(clicked: RatingData) {
         launch {
             view.setRatingClickable(false)
-            if (rating != newRating) {
-                rating = newRating
-                repository.addRating(sessionId, newRating)
-            } else {
-                rating = null
-                repository.removeRating(sessionId)
-            }
-            view.setupRatingButtons(rating)
+
+            localRating = if (localRating != clicked) clicked else null
+            repository.setRating(session, clicked)
+            view.updateRating(localRating)
         }.invokeOnCompletion {
+            if (it != null) {
+                view.showError(it)
+                localRating = session.rating
+            }
+
             view.setRatingClickable(true)
+            view.updateRating(localRating)
         }
     }
 
+    /**
+     * Handle rating button event.
+     */
     fun onFavoriteButtonClicked() {
         launch {
-            val isFavorite = isFavorite()
-            repository.setFavorite(session.id, !isFavorite)
+            repository.setFavorite(session, !localFavorite)
+            view.updateFavorite(localFavorite)
         }.invokeOnCompletion {
-            refreshDataFromRepo()
+            if (it != null) localFavorite = session.isFavorite
+            view.updateFavorite(localFavorite)
         }
     }
-
-    private fun refreshDataFromRepo() {
-        session = repository.sessions?.firstOrNull { it.id == sessionId } ?: return
-        view.updateView(isFavorite(), session)
-        rating = repository.getRating(sessionId)
-        view.setupRatingButtons(rating)
-    }
-
-    private fun isFavorite() =
-        repository.favorites?.any { it.id == sessionId } ?: false
 }

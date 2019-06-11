@@ -1,11 +1,6 @@
 package org.jetbrains.kotlinconf.data
 
-enum class VoteData(val value: Int) {
-    BAD(-1),
-    OK(0),
-    GOOD(1);
+import kotlinx.serialization.Serializable
 
-    companion object {
-        fun valueOf(value: Int): VoteData = values().find { it.value == value }!!
-    }
-}
+@Serializable
+class VoteData(val sessionId: String, val rating: RatingData?)

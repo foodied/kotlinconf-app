@@ -4,7 +4,7 @@ import kotlinconf
 
 @IBDesignable
 class ScheduleTableCell : UITableViewCell {
-    @IBOutlet weak var favourite: UIImageView!
+    @IBOutlet weak var favorite: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
 
@@ -12,8 +12,8 @@ class ScheduleTableCell : UITableViewCell {
         titleLabel?.text = data.title
         subtitleLabel?.text = data.room + ", " + data.author
 
-//        if (data.isFavourite) {
-//            self.configureFavourite(data: data)
+//        if (data.isFavorite) {
+//            self.configureFavorite(data: data)
 //            return
 //        }
 
@@ -25,7 +25,7 @@ class ScheduleTableCell : UITableViewCell {
         configurePlain(data: data)
     }
 
-    private func configureFavourite(data: SessionModel) {
+    private func configureFavorite(data: SessionModel) {
         subtitleLabel?.text = data.startTime + "-" + data.endTime + ", " + data.location
 
         titleLabel.font = UIFont.headerListMed
@@ -38,7 +38,7 @@ class ScheduleTableCell : UITableViewCell {
 
         separatorInset = UIEdgeInsets(top: 0, left: 100000, bottom: 0, right: 0)
 
-        favourite.isHidden = false
+        favorite.isHidden = false
     }
 
     private func configureNow(data: SessionModel) {
@@ -52,7 +52,7 @@ class ScheduleTableCell : UITableViewCell {
 
         separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 
-        favourite.isHidden = true
+        favorite.isHidden = true
     }
 
     private func configurePlain(data: SessionModel) {
@@ -62,6 +62,6 @@ class ScheduleTableCell : UITableViewCell {
         titleLabel.textColor = UIColor.darkGrey
         subtitleLabel.textColor = UIColor.darkGrey50
 
-        favourite.isHidden = true
+        favorite.isHidden = true
     }
 }

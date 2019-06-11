@@ -10,7 +10,7 @@ data class ConferenceData(
     val speakers: List<SpeakerData> = emptyList(),
     val questions: List<QuestionData> = emptyList(),
     val categories: List<CategoryData> = emptyList(),
-    val favorites: List<FavoriteData> = emptyList(),
+    val favorites: List<String> = emptyList(),
     val votes: List<VoteData> = emptyList()
 )
 

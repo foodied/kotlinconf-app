@@ -9,7 +9,11 @@ import io.ktor.http.*
 import kotlinx.io.core.*
 import org.jetbrains.kotlinconf.data.*
 
-class KotlinConfApi(private val endPoint: String, private val userId: String) {
+/**
+ * Adapter to handle backend API and manage auth information.
+ */
+class ApiAdapter(private val endPoint: String, private val userId: String) {
+
     private val client = HttpClient {
         install(JsonFeature) {
             serializer = KotlinxSerializer().apply {
@@ -20,6 +24,11 @@ class KotlinConfApi(private val endPoint: String, private val userId: String) {
         }
     }
 
+    /**
+     * Create user with id [userId].
+     *
+     * @return status of request.
+     */
     suspend fun createUser(userId: String): Boolean = client.request<HttpResponse> {
         apiUrl("users")
         method = HttpMethod.Post
@@ -28,32 +37,39 @@ class KotlinConfApi(private val endPoint: String, private val userId: String) {
         it.status.isSuccess()
     }
 
+    /**
+     * Get [ConferenceData] info.
+     * Load favorites and votes info if [userId] provided.
+     */
     suspend fun getAll(userId: String?): ConferenceData = client.get {
         apiUrl("all", userId)
     }
 
-    suspend fun postFavorite(favorite: FavoriteData, userId: String): Unit = client.post {
+    /**
+     * Update favorite information.
+     */
+    suspend fun postFavorite(userId: String, sessionId: String): Unit = client.post {
         apiUrl("favorites", userId)
-        json()
-        body = favorite
+        body = sessionId
     }
 
-    suspend fun deleteFavorite(favorite: FavoriteData, userId: String): Unit = client.delete {
+    /**
+     * Remove item from favorites list.
+     */
+    suspend fun deleteFavorite(userId: String, sessionId: String): Unit = client.delete {
         apiUrl("favorites", userId)
-        json()
-        body = favorite
+        body = sessionId
     }
 
-    suspend fun postVote(vote: VoteData, userId: String): Unit = client.post {
+    suspend fun postVote(userId: String, vote: VoteData): Unit = client.post {
         apiUrl("votes", userId)
         json()
         body = vote
     }
 
-    suspend fun deleteVote(vote: VoteData, userId: String): Unit = client.delete {
+    suspend fun deleteVote(userId: String, sessionId: String): Unit = client.delete {
         apiUrl("votes", userId)
-        json()
-        body = vote
+        body = sessionId
     }
 
     private fun HttpRequestBuilder.json() {

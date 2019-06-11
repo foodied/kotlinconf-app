@@ -20,7 +20,7 @@ import org.jetbrains.kotlinconf.R
 import org.jetbrains.kotlinconf.presentation.*
 import kotlin.properties.Delegates.observable
 
-abstract class SessionListFragment : BaseFragment(), AnkoComponent<Context>, SessionListView {
+abstract class SessionListFragment : BaseFragment(), AnkoComponent<Context>, SessionsView {
 
     private lateinit var sessionsRecyclerView: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
@@ -36,7 +36,7 @@ abstract class SessionListFragment : BaseFragment(), AnkoComponent<Context>, Ses
     private val repository by lazy { (activity!!.application as KotlinConfApplication).dataRepository }
     private val navigationManager by lazy { activity as NavigationManager }
     private val searchQueryProvider by lazy { activity as SearchQueryProvider }
-    private val presenter by lazy { SessionListPresenter(Dispatchers.Main, this, repository, navigationManager, searchQueryProvider) }
+    private val presenter by lazy { SessionsPresenter(Dispatchers.Main, this, repository, navigationManager, searchQueryProvider) }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

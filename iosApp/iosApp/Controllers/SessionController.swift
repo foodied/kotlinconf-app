@@ -13,8 +13,8 @@ class SessionController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        startButton.setImage(UIImage(named: "favouriteEmpty.png"), for: .selected)
-        startButton.setImage(UIImage(named: "favourite.png"), for: .selected)
+        startButton.setImage(UIImage(named: "favoriteEmpty.png"), for: .selected)
+        startButton.setImage(UIImage(named: "favorite.png"), for: .selected)
         videoBox.load(withVideoId: "wZZ7oFKsKzY")
 
         speakerLabel.onTouchUp = {
@@ -28,7 +28,7 @@ class SessionController : UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
-    @IBAction func favouriteClick(_ sender: Any) {
+    @IBAction func favoriteClick(_ sender: Any) {
         startButton.isSelected = !startButton.isSelected
     }
 

@@ -4,7 +4,8 @@ import org.jetbrains.kotlinconf.*
 import org.jetbrains.kotlinconf.data.*
 
 interface SessionDetailsView : BaseView {
-    fun updateView(isFavorite: Boolean, session: Session)
-    fun setupRatingButtons(rating: VoteData?)
+    fun updateSession(session: Session)
+    fun updateRating(rating: RatingData?)
     fun setRatingClickable(clickable: Boolean)
+    fun updateFavorite(isFavorite: Boolean)
 }

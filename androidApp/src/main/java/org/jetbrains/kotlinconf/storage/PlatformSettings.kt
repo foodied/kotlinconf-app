@@ -3,7 +3,7 @@ package org.jetbrains.kotlinconf.storage
 import android.content.*
 import android.preference.*
 
-class PlatformSettings constructor(context: Context) : Settings {
+class PlatformSettings constructor(context: Context) : ApplicationStorage {
 
     private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 

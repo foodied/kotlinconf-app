@@ -20,11 +20,10 @@ import org.jetbrains.anko.support.v4.*
 import org.jetbrains.kotlinconf.*
 import org.jetbrains.kotlinconf.R
 import org.jetbrains.kotlinconf.data.*
-import org.jetbrains.kotlinconf.data.VoteData.*
 import org.jetbrains.kotlinconf.presentation.*
 
-class SessionDetailsFragment : BaseFragment(), SessionDetailsView {
-
+class SessionDetailsFr
+agment(val session: Session) : BaseFragment(), SessionDetailsView {
     private lateinit var toolbar: Toolbar
     private lateinit var speakersTextView: TextView
     private lateinit var timeTextView: TextView
@@ -39,18 +38,17 @@ class SessionDetailsFragment : BaseFragment(), SessionDetailsView {
     private lateinit var badButton: ImageButton
     private lateinit var okButton: ImageButton
 
-    private val sessionId by lazy { arguments!!.get(KEY_SESSION_ID) as String }
     private val repository by lazy { (activity!!.application as KotlinConfApplication).dataRepository }
-    private val presenter by lazy { SessionDetailsPresenter(Dispatchers.Main, this, sessionId, repository) }
+    private val presenter by lazy { SessionDetailsPresenter(this, session, repository) }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setUpActionBar()
 
         favoriteButton.setOnClickListener { presenter.onFavoriteButtonClicked() }
-        goodButton.setOnClickListener { presenter.rateSessionClicked(GOOD) }
-        okButton.setOnClickListener { presenter.rateSessionClicked(OK) }
-        badButton.setOnClickListener { presenter.rateSessionClicked(BAD) }
+        goodButton.setOnClickListener { presenter.onRatingButtonClicked(RatingData.GOOD) }
+        okButton.setOnClickListener { presenter.onRatingButtonClicked(RatingData.OK) }
+        badButton.setOnClickListener { presenter.onRatingButtonClicked(RatingData.BAD) }
 
         presenter.onCreate()
     }
@@ -65,13 +63,13 @@ class SessionDetailsFragment : BaseFragment(), SessionDetailsView {
         menu.clear()
     }
 
-    override fun setupRatingButtons(rating: VoteData?) {
+    override fun setupRatingButtons(rating: RatingData?) {
         fun selectButton(target: VoteData): Int = when (rating) {
             target -> R.drawable.round_toggle_button_background_selected
             else -> R.drawable.round_toggle_button_background
         }
 
-        goodButton.backgroundResource = selectButton(GOOD)
+        goodButton.backgroundResource = selectButton(RatingData.GOOD)
         okButton.backgroundResource = selectButton(OK)
         badButton.backgroundResource = selectButton(BAD)
     }
@@ -281,8 +279,8 @@ class SessionDetailsFragment : BaseFragment(), SessionDetailsView {
         const val TAG = "SessionDetailsFragment"
         private const val KEY_SESSION_ID = "SessionId"
 
-        fun forSession(id: String): SessionDetailsFragment = SessionDetailsFragment().apply {
-            arguments = Bundle().apply { putString(KEY_SESSION_ID, id) }
+        fun forSession(session: Session): SessionDetailsFragment = SessionDetailsFragment().apply {
+            arguments = Bundle().apply { putString(KEY_SESSION_ID, session.id) }
         }
     }
 }

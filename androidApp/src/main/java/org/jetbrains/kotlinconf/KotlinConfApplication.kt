@@ -5,8 +5,7 @@ import android.content.*
 import android.support.multidex.*
 import org.jetbrains.anko.*
 import org.jetbrains.kotlinconf.api.END_POINT
-import org.jetbrains.kotlinconf.model.*
-import org.jetbrains.kotlinconf.presentation.*
+import org.jetbrains.kotlinconf.presentation.DataRepository
 import org.jetbrains.kotlinconf.storage.*
 import java.util.*
 
@@ -14,7 +13,7 @@ class KotlinConfApplication : Application(), AnkoLogger {
 
     val dataRepository: DataRepository by lazy {
         val settingsFactory = PlatformSettings(applicationContext)
-        KotlinConfDataRepository(END_POINT, getUserId(), settingsFactory)
+        org.jetbrains.kotlinconf.model.DataRepository(END_POINT, getUserId(), settingsFactory)
     }
 
     override fun onCreate() {

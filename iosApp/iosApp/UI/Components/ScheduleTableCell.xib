@@ -30,7 +30,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favourite" translatesAutoresizingMaskIntoConstraints="NO" id="p6h-22-jXQ">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favorite" translatesAutoresizingMaskIntoConstraints="NO" id="p6h-22-jXQ">
                         <rect key="frame" x="5" y="11" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="jQm-3L-p83"/>
@@ -52,7 +52,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="favourite" destination="p6h-22-jXQ" id="idJ-Bo-I3O"/>
+                <outlet property="favorite" destination="p6h-22-jXQ" id="idJ-Bo-I3O"/>
                 <outlet property="subtitleLabel" destination="Jry-cz-8vd" id="OwX-zp-anA"/>
                 <outlet property="titleLabel" destination="C1r-TL-wSb" id="szS-10-JzE"/>
             </connections>
@@ -60,6 +60,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="favourite" width="20" height="20"/>
+        <image name="favorite" width="20" height="20"/>
     </resources>
 </document>

@@ -87,15 +87,15 @@
                                                     <action selector="backButtonTouch:" destination="EXc-s1-4Xq" eventType="touchUpInside" id="Oxh-cO-s5p"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ik2-do-TBo" userLabel="FavouriteButton">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ik2-do-TBo" userLabel="FavoriteButton">
                                                 <rect key="frame" x="369" y="94.5" width="42" height="42"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="42" id="5NR-Wc-5Hg"/>
                                                     <constraint firstAttribute="height" constant="42" id="F1z-GC-O4U"/>
                                                 </constraints>
-                                                <state key="normal" image="favouriteEmpty"/>
+                                                <state key="normal" image="favoriteEmpty"/>
                                                 <connections>
-                                                    <action selector="favouriteClick:" destination="EXc-s1-4Xq" eventType="touchUpInside" id="fuW-Gs-CNY"/>
+                                                    <action selector="favoriteClick:" destination="EXc-s1-4Xq" eventType="touchUpInside" id="fuW-Gs-CNY"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ6-6Z-W9W" userLabel="TitleSeparator">
@@ -495,7 +495,7 @@ Denmark</string>
     <resources>
         <image name="back" width="16" height="29"/>
         <image name="back_white" width="16" height="29"/>
-        <image name="favouriteEmpty" width="42" height="41"/>
+        <image name="favoriteEmpty" width="42" height="41"/>
         <image name="home" width="29" height="36"/>
         <image name="rectangle" width="375" height="376"/>
         <image name="schedule" width="39" height="36"/>

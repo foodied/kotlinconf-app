@@ -144,14 +144,13 @@ internal fun Routing.apiVote(database: Database, production: Boolean) {
             val principal = call.validatePrincipal(database) ?: throw Unauthorized()
             val vote = call.receive<VoteData>()
             val sessionId = vote.sessionId
-            val rating = vote.rating
+            val rating = vote.rating!!.value
 
             val session = getSessionizeData().allData.sessions.firstOrNull { it.id == sessionId } ?: throw NotFound()
             val nowTime = simulatedTime(production)
             val startVotesAt = LocalDateTime.parse(session.startsAt, dateFormat)
             val endVotesAt = LocalDateTime.parse(session.endsAt, dateFormat).plusMinutes(15)
-            val votingPeriodStarted =
-                startVotesAt?.let { ZonedDateTime.of(it, keynoteTimeZone).isBefore(nowTime) } ?: true
+            val votingPeriodStarted = startVotesAt.let { ZonedDateTime.of(it, keynoteTimeZone).isBefore(nowTime) }
             val votingPeriodEnded = endVotesAt?.let { ZonedDateTime.of(it, keynoteTimeZone).isBefore(nowTime) } ?: true
 
             if (!votingPeriodStarted)
@@ -189,7 +188,7 @@ internal fun Routing.apiAll(database: Database) {
         val principal = call.validatePrincipal(database)
         val responseData = if (principal != null) {
             val votes = database.getVotes(principal.token)
-            val favorites = database.getFavorites(principal.token)
+            val favorites = database.getFavorites(principal.token).map { it.sessionId }
             val personalizedData = data.allData.copy(votes = votes, favorites = favorites)
             SessionizeData(personalizedData)
         } else data

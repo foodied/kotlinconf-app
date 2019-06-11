@@ -11,10 +11,10 @@ data class SessionData(
     val questionAnswers: List<QuestionAnswerData>,
     val speakers: List<String>,
     @SerialName("description")
-    val descriptionText: String?,
-    val startsAt: String?,
+    val descriptionText: String,
+    val startsAt: String,
     val title: String,
-    val endsAt: String?,
+    val endsAt: String,
     val categoryItems: List<Int>,
     val roomId: Int?
 )

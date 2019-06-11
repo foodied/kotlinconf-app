@@ -1,6 +1,8 @@
 package org.jetbrains.kotlinconf.presentation
 
-class MainPresenter(
+import org.jetbrains.kotlinconf.model.*
+
+class MainScreenPresenter(
     private val navigationManager: NavigationManager,
     private val repository: DataRepository
 ) {

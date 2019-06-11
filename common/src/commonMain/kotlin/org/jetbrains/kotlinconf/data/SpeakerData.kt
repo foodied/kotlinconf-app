@@ -7,8 +7,8 @@ import kotlinx.serialization.*
 data class SpeakerData(
     val firstName: String,
     val lastName: String,
-    val profilePicture: String?,
-    val sessions: List<Int>,
+    val profilePicture: String,
+    val sessions: List<String>,
     val tagLine: String,
     val isTopSpeaker: Boolean,
     val bio: String,
